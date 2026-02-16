@@ -26,7 +26,7 @@ public class Vehicle {
     private DriverProfile driverProfile;
 
     @Column(nullable = false, unique = true)
-    private String plateNumber; // Matricule (ex: 00123-116-16)
+    private String plateNumber;
 
     @Column(nullable = false)
     private String model; // Marque + Modèle (ex: Toyota Hilux)
@@ -35,10 +35,11 @@ public class Vehicle {
 
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
-    private VehicleType type; // Enum défini plus haut
+    private VehicleType type;
 
     // LOGISTIQUE
+    @Column(name = "volume_m3")
     private Double volumeM3; // Capacité (ex: 12.5) - Nullable car une moto n'a pas de volume cubique pertinent
 
-    private String photoUrl; // Photo du véhicule pour validation
+    private String pictureUrl; // Photo du véhicule pour validation
 }

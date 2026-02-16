@@ -7,10 +7,12 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.locationtech.jts.geom.Point;
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
 public interface DriverProfileRepository extends JpaRepository<DriverProfile, UUID> {
     boolean existsByUser(User user);
+    Optional<DriverProfile> findByUser(User user);
     @Query(value = """
         SELECT * FROM driver_profile d
         WHERE d.is_online = true 

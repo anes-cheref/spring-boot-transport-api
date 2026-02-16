@@ -33,7 +33,7 @@ public class DriverService {
         DriverProfile driver = DriverProfile.builder()
                 .user(user)
                 .licenseNumber(request.licenseNumber())
-                .licenceUrl(request.licenseUrl())
+                .licenseUrl(request.licenseUrl())
                 .idCardUrl(request.idCardUrl())
                 .verificationStatus(VerificationStatus.PENDING)
                 .ratingScore(null) // Pas encore de note
@@ -124,5 +124,19 @@ public class DriverService {
                     );
                 })
                 .toList();
+    }
+
+    public void toggleOnlineStatusByUser(User user) {
+        DriverProfile driver = driverRepository.findByUser(user)
+                .orElseThrow(() -> new RuntimeException("Profil chauffeur introuvable"));
+
+        toggleOnlineStatus(driver.getId());
+    }
+
+    public void updateLocationByUser(User user, double lat, double lng) {
+        DriverProfile driver = driverRepository.findByUser(user)
+                .orElseThrow(() -> new RuntimeException("Profil chauffeur introuvable"));
+
+        updateLocation(driver.getId(), lat, lng);
     }
 }

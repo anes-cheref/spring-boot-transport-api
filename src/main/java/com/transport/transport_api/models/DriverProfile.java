@@ -31,7 +31,7 @@ public class DriverProfile {
     private String licenseNumber;
 
     private String idCardUrl;
-    private String licenceUrl;
+    private String licenseUrl;
 
     @Enumerated(EnumType.STRING)
     private VerificationStatus verificationStatus;
