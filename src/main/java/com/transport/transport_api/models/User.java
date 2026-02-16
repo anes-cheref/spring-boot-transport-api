@@ -12,6 +12,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import java.time.LocalDateTime;
 import java.util.Collection;
 import java.util.List;
+import java.util.UUID;
 
 @Data
 @Entity
@@ -22,19 +23,20 @@ import java.util.List;
 public class User implements UserDetails{
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
-    String id;
-    String fullName;
-    String email;
-    String password;
+    private UUID id;
+    private String fullName;
+    private String email;
+    private String password;
     @Column(unique = true, nullable = false)
-    String phoneNumber;
+    private String phoneNumber;
     @Enumerated(EnumType.STRING)
-    Role role;
+    private Role role;
 
     private String otpCode;
     private LocalDateTime otpExpiryDate;
     private boolean isVerified;
-
+    private boolean isDriver;
+    private String pictureUrl;
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return List.of(new SimpleGrantedAuthority("ROLE_"+ role.name()));
     }
