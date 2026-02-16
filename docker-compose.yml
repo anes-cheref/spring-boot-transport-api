@@ -1,0 +1,16 @@
+version: '3.8'
+services:
+  db:
+    image: postgres:15-alpine
+    container_name: dz-transport-db
+    ports:
+      - "5432:5432"  # Le port par défaut de Postgres
+    environment:
+      POSTGRES_USER: dzuser       # nom d'utilisateur
+      POSTGRES_PASSWORD: dzpassword # mot de passe
+      POSTGRES_DB: transport_db   # Le nom de la base
+    volumes:
+      - postgres_data:/var/lib/postgresql/data # Pour ne pas perdre les données si tu éteins le PC
+
+volumes:
+  postgres_data:
