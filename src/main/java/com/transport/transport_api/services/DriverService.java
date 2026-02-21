@@ -21,8 +21,8 @@ public class DriverService {
     private final DriverProfileRepository driverRepository;
     private final VehicleRepository vehicleRepository;
 
-    // CREATION (Avec Véhicule !) ---
-    @Transactional // Si le véhicule plante, le driver est annulé aussi (Tout ou rien)
+    // CREATION
+    @Transactional // Si le véhicule plante, le driver est annulé aussi
     public String createDriverProfile(User user, DriverOnBoardingDTO request) {
         // Vérif préventive (optionnelle si gérée ailleurs)
         if (driverRepository.existsByUser(user)) {

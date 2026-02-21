@@ -1,7 +1,7 @@
--- 1. Activer l'extension PostGIS (OBLIGATOIRE pour le GPS)
+-- Activer l'extension PostGIS (OBLIGATOIRE pour le GPS)
 CREATE EXTENSION IF NOT EXISTS postgis;
 
--- 2. Création de la table DRIVER_PROFILE
+-- Création de la table DRIVER_PROFILE
 CREATE TABLE driver_profile (
                                 id UUID PRIMARY KEY,
                                 user_id UUID NOT NULL UNIQUE, -- Lien OneToOne
@@ -16,10 +16,10 @@ CREATE TABLE driver_profile (
                                 CONSTRAINT fk_driver_user FOREIGN KEY (user_id) REFERENCES _user(id) ON DELETE CASCADE
 );
 
--- 3. Création de l'INDEX SPATIAL (Vital pour les perfs de "findNearbyDrivers")
+-- Création de l'INDEX SPATIAL (Vital pour les perfs de "findNearbyDrivers")
 CREATE INDEX idx_driver_location ON driver_profile USING GIST (last_location);
 
--- 4. Création de la table VEHICLE
+-- Création de la table VEHICLE
 CREATE TABLE vehicle (
                          id UUID PRIMARY KEY,
                          driver_profile_id UUID NOT NULL, -- Lien ManyToOne

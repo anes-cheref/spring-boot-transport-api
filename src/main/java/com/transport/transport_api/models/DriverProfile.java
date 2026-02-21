@@ -8,6 +8,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.locationtech.jts.geom.Point;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
@@ -46,6 +47,20 @@ public class DriverProfile {
     @OneToMany(mappedBy = "driverProfile", fetch = FetchType.LAZY)
     private List<Vehicle> vehicles;
 
+    public void addVehicle(Vehicle vehicle) {
+        if (this.vehicles == null) {
+            this.vehicles = new ArrayList<>();
+        }
+        this.vehicles.add(vehicle);
+        vehicle.setDriverProfile(this);
+    }
+
+    public void removeVehicle(Vehicle vehicle) {
+        if (this.vehicles != null) {
+            this.vehicles.remove(vehicle);
+            vehicle.setDriverProfile(null);
+        }
+    }
 
 
 }
