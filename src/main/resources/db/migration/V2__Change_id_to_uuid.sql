@@ -1,0 +1,2 @@
+ALTER TABLE _user
+ALTER COLUMN id TYPE UUID USING id::uuid;
